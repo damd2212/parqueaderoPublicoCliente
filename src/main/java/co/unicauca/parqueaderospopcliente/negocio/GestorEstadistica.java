@@ -25,7 +25,7 @@ public class GestorEstadistica {
         parqueadero = i;
     }
     
-    public List<EstadisticaIngreso> consultarEstadistica(String Fecha)throws Exception{
-        return parqueadero.consultarEstadistica(Fecha);
+    public List<EstadisticaIngreso> consultarEstadistica(String Fecha,String nitParqueadero)throws Exception{
+        return parqueadero.consultarEstadistica(Fecha,nitParqueadero);
     }
 }

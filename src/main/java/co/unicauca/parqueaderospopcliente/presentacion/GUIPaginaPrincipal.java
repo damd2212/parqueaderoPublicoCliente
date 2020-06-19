@@ -41,6 +41,7 @@ public class GUIPaginaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnRegVehiculo = new javax.swing.JMenuItem();
+        jmEstadistica = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         btnRegVehiParque.setText("Registrar Vehiculo en el parqueadero");
@@ -107,6 +108,14 @@ public class GUIPaginaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(btnRegVehiculo);
 
+        jmEstadistica.setText("Estadistica Vehiculos");
+        jmEstadistica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmEstadisticaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmEstadistica);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Ayudas");
@@ -155,6 +164,17 @@ public class GUIPaginaPrincipal extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    private void jmEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEstadisticaActionPerformed
+        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
+                GUIEstadistica estadistica = new GUIEstadistica();
+                estadistica.setVisible(true);
+                estadistica.setLocationRelativeTo(null);
+            }
+        });
+    }//GEN-LAST:event_jmEstadisticaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -200,6 +220,7 @@ public class GUIPaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jmEstadistica;
     private javax.swing.JLabel lbAd;
     private javax.swing.JLabel lbNomPar;
     // End of variables declaration//GEN-END:variables

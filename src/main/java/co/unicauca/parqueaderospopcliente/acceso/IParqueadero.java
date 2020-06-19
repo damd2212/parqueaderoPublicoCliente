@@ -30,7 +30,7 @@ public interface IParqueadero {
     public Parqueadero consultarParqueadero(String Usuario)throws Exception;
     public Tarifa consultarTarifaMotos(String Horas,String Minutos)throws Exception;
     public Persona consultarPersona(String Usuario,String Contraseña)throws Exception;
-    public List<EstadisticaIngreso> consultarEstadistica(String Fecha)throws Exception;
+    public List<EstadisticaIngreso> consultarEstadistica(String Fecha,String nitParqueadero)throws Exception;
     public void actualizarIngreso(String nitParqueadero);
     public void actualizarSalida(String nitParqueadero);
     

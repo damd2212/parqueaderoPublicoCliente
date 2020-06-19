@@ -259,11 +259,11 @@ public class ParqueaderoServicioImplSockets implements IParqueadero{
     }
     
     @Override
-    public List<EstadisticaIngreso> consultarEstadistica(String Fecha)throws Exception{
+    public List<EstadisticaIngreso> consultarEstadistica(String Fecha,String nitParqueadero)throws Exception{
         String jsonEstadistica = null;
         try{
             conectar(IP_SERVIDOR, PUERTO);
-            jsonEstadistica = leerFlujoEntradaSalida("consultarEstadistica,"+ Fecha);
+            jsonEstadistica = leerFlujoEntradaSalida("consultarEstadistica,"+ Fecha+","+nitParqueadero);
             cerrarFlujos();
             desconectar();
         }catch(IOException ex){

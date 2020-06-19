@@ -12,17 +12,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author danny
  */
-public class GUIPrueba extends javax.swing.JFrame {
+public class GUIEstadistica extends javax.swing.JFrame {
 
     /**
      * Creates new form GUIPrueba
      */
-    public GUIPrueba() {
+    public GUIEstadistica() {
         initComponents();
     }
 
@@ -82,7 +83,7 @@ public class GUIPrueba extends javax.swing.JFrame {
 
         jProgressBar3.setOrientation(1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -393,9 +394,7 @@ public class GUIPrueba extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticaActionPerformed
-        // TODO add your handling code here:
+    public void limpiar(){
         Conteo1.setText("0");
         Conteo2.setText("0");
         Conteo3.setText("0");
@@ -409,8 +408,26 @@ public class GUIPrueba extends javax.swing.JFrame {
         Conteo11.setText("0");
         Conteo12.setText("0");
         Conteo13.setText("0");
+        jPBHora7.setValue(0);
+        jPBHora8.setValue(0);
+        jPBHora9.setValue(0);
+        jPBHora10.setValue(0);
+        jPBHora11.setValue(0);
+        jPBHora12.setValue(0);
+        jPBHora13.setValue(0);
+        jPBHora14.setValue(0);
+        jPBHora15.setValue(0);
+        jPBHora16.setValue(0);
+        jPBHora17.setValue(0);
+        jPBHora18.setValue(0);
+        jPBHora19.setValue(0);
+    }
+    private void btnEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticaActionPerformed
+        // TODO add your handling code here:
         GestorEstadistica gestorEst = new GestorEstadistica();
+        GUIIniciarSesion iniciar = new GUIIniciarSesion();
         List<EstadisticaIngreso> lista = new ArrayList();
+        String nitParqueadero = iniciar.atrNit;
         Date date = jCalendar.getDate();
         long d = date.getTime();
         java.sql.Date fecha = new java.sql.Date(d);
@@ -418,64 +435,69 @@ public class GUIPrueba extends javax.swing.JFrame {
         String sFecha = df.format(fecha);
 
         try {
-            lista = gestorEst.consultarEstadistica(sFecha);
-            
+            lista = gestorEst.consultarEstadistica(sFecha, nitParqueadero);
+
         } catch (Exception e) {
             System.out.println(" ");
         }
-        for (EstadisticaIngreso object : lista) {
-            System.out.println(object.getFecha() + " " + object.getHora() + " " + object.getConteoTotal());
-            if (object.getHora().equals("7")) {
-                Conteo1.setText(object.getConteoTotal());
-                jPBHora7.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("8")) {
-                Conteo2.setText(object.getConteoTotal());
-                jPBHora8.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("9")) {
-                Conteo3.setText(object.getConteoTotal());
-                jPBHora9.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("10")) {
-                Conteo4.setText(object.getConteoTotal());
-                jPBHora10.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("11")) {
-                Conteo5.setText(object.getConteoTotal());
-                jPBHora11.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("12")) {
-                Conteo6.setText(object.getConteoTotal());
-                jPBHora12.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("13")) {
-                Conteo7.setText(object.getConteoTotal());
-                jPBHora13.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("14")) {
-                Conteo8.setText(object.getConteoTotal());
-                jPBHora14.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("15")) {
-                Conteo9.setText(object.getConteoTotal());
-                jPBHora15.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("16")) {
-                Conteo10.setText(object.getConteoTotal());
-                jPBHora16.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("17")) {
-                Conteo11.setText(object.getConteoTotal());
-                jPBHora17.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("18")) {
-                Conteo12.setText(object.getConteoTotal());
-                jPBHora18.setValue(Integer.parseInt(object.getConteoTotal()));
-            }
-            if (object.getHora().equals("19")) {
-                Conteo13.setText(object.getConteoTotal());
-                jPBHora19.setValue(Integer.parseInt(object.getConteoTotal()));
+        if (lista == null) {
+            JOptionPane.showMessageDialog(null, "No hay vehiculos registrados para esta fecha");
+            limpiar();
+        } else {
+            for (EstadisticaIngreso object : lista) {
+                System.out.println(object.getFecha() + " " + object.getHora() + " " + object.getConteoTotal());
+                if (object.getHora().equals("7")) {
+                    Conteo1.setText(object.getConteoTotal());
+                    jPBHora7.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("8")) {
+                    Conteo2.setText(object.getConteoTotal());
+                    jPBHora8.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("9")) {
+                    Conteo3.setText(object.getConteoTotal());
+                    jPBHora9.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("10")) {
+                    Conteo4.setText(object.getConteoTotal());
+                    jPBHora10.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("11")) {
+                    Conteo5.setText(object.getConteoTotal());
+                    jPBHora11.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("12")) {
+                    Conteo6.setText(object.getConteoTotal());
+                    jPBHora12.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("13")) {
+                    Conteo7.setText(object.getConteoTotal());
+                    jPBHora13.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("14")) {
+                    Conteo8.setText(object.getConteoTotal());
+                    jPBHora14.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("15")) {
+                    Conteo9.setText(object.getConteoTotal());
+                    jPBHora15.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("16")) {
+                    Conteo10.setText(object.getConteoTotal());
+                    jPBHora16.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("17")) {
+                    Conteo11.setText(object.getConteoTotal());
+                    jPBHora17.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("18")) {
+                    Conteo12.setText(object.getConteoTotal());
+                    jPBHora18.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
+                if (object.getHora().equals("19")) {
+                    Conteo13.setText(object.getConteoTotal());
+                    jPBHora19.setValue(Integer.parseInt(object.getConteoTotal()));
+                }
             }
         }
     }//GEN-LAST:event_btnEstadisticaActionPerformed
@@ -497,20 +519,21 @@ public class GUIPrueba extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIEstadistica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIEstadistica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIEstadistica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIPrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIEstadistica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIPrueba().setVisible(true);
+                new GUIEstadistica().setVisible(true);
             }
         });
     }
