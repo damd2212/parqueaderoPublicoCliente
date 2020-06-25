@@ -24,7 +24,7 @@ public class GestorEstadistica {
     public GestorEstadistica(IParqueadero i){
         parqueadero = i;
     }
-    
+    //Metodo que retorna una lista con los objetos guardados
     public List<EstadisticaIngreso> consultarEstadistica(String Fecha,String nitParqueadero)throws Exception{
         return parqueadero.consultarEstadistica(Fecha,nitParqueadero);
     }

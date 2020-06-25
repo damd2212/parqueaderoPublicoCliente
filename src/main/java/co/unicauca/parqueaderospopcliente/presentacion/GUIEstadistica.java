@@ -412,6 +412,7 @@ public class GUIEstadistica extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    //Metodo para reiniciar los campos y paneles
     public void limpiar(){
         Conteo1.setText("0");
         Conteo2.setText("0");
@@ -440,6 +441,7 @@ public class GUIEstadistica extends javax.swing.JFrame {
         jPBHora18.setValue(0);
         jPBHora19.setValue(0);
     }
+    //Se ejecuta toda la logica llamndo los metods para realizar la estadistica y ademas se configura los campos que imprimen las estadisticas
     private void btnEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticaActionPerformed
         // TODO add your handling code here:
         GestorEstadistica gestorEst = new GestorEstadistica();

@@ -257,7 +257,7 @@ public class ParqueaderoServicioImplSockets implements IParqueadero{
         }
         return null;
     }
-    
+    //Metodo para guardar en una lista los objetos Estadistica que se obtengan del servidor
     @Override
     public List<EstadisticaIngreso> consultarEstadistica(String Fecha,String nitParqueadero)throws Exception{
         String jsonEstadistica = null;
@@ -390,7 +390,7 @@ public class ParqueaderoServicioImplSockets implements IParqueadero{
             Logger.getLogger(ParqueaderoServicioImplSockets.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //Metodo para actualizar los puestos libre y ocupados
     @Override
     public void actualizarIngreso(String NitParqueadero){
         try{
@@ -403,6 +403,7 @@ public class ParqueaderoServicioImplSockets implements IParqueadero{
         }
     }
     
+    //Metodo para actualizar los puestos libre y ocupados
     @Override
     public void actualizarSalida(String NitParqueadero){
         try{
